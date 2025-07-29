@@ -1,4 +1,6 @@
 
+#ifndef RCT_NEW_ARCH_ENABLED
+
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
@@ -40,3 +42,5 @@ RCT_EXTERN_METHOD(hasListener:(RCTPromiseResolveBlock) resolve rejecter:(RCTProm
 RCT_EXTERN_METHOD(protectionStatus:(RCTPromiseResolveBlock) resolve rejecter:(RCTPromiseRejectBlock) reject)
 RCT_EXTERN_METHOD(isScreenRecording:(RCTPromiseResolveBlock) resolve rejecter:(RCTPromiseRejectBlock) reject)
 @end
+
+#endif /* RCT_NEW_ARCH_ENABLED */

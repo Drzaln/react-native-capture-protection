@@ -11,7 +11,28 @@ import {
   ContentMode,
 } from './type';
 
-const CaptureProtectionModule = NativeModules?.CaptureProtection ?? {};
+// TurboModule support
+const LINKING_ERROR =
+  `The package 'react-native-capture-protection' doesn't seem to be linked. Make sure: \n\n` +
+  Platform.select({ ios: "- You have run 'cd ios && pod install'\n", default: '' }) +
+  '- You rebuilt the app after installing the package\n' +
+  '- You are not using Expo Go\n';
+
+// Support both new and old architecture
+const CaptureProtectionModule = (() => {
+  try {
+    // Try to get TurboModule first (new architecture)
+    const NativeCaptureProtection = require('./NativeCaptureProtection').default;
+    return NativeCaptureProtection;
+  } catch {
+    // Fallback to legacy bridge (old architecture)
+    const module = NativeModules?.CaptureProtection;
+    if (!module) {
+      throw new Error(LINKING_ERROR);
+    }
+    return module;
+  }
+})();
 
 const CaptureProtectionAndroidModule =
   CaptureProtectionModule as CaptureProtectionAndroidNativeModules;
