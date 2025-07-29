@@ -168,6 +168,11 @@
       ]
     ]
   },
+  "codegenConfig": {
+    "name": "RNCaptureProtectionSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
   "dependencies": {
     "expo-dev-client": "~5.2.1"
   }
