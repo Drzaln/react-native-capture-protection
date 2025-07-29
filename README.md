@@ -20,6 +20,8 @@ Fully compatible with **React Native CLI** and **Expo (Dev Client only)**.
 - 📡 Event listeners for capture events
 - 🧩 Hooks & Provider support
 - 📱 Android 14 support
+- ⚡ React Native New Architecture (TurboModules) support
+- 🔄 Backward compatibility with legacy bridge architecture
 
 ---
 
@@ -62,6 +64,50 @@ If you're developing for iOS, don't forget to install CocoaPods dependencies aft
 ```sh
 cd ios && pod install
 ```
+
+---
+
+## 🏗️ React Native New Architecture Support
+
+This library supports both the **legacy bridge** and the **new architecture** (TurboModules/Fabric) starting from **React Native 0.68+**.
+
+### Enabling New Architecture
+
+To enable the new architecture in your React Native app:
+
+**For React Native CLI:**
+```bash
+# For iOS (in ios/Podfile)
+ENV['RCT_NEW_ARCH_ENABLED'] = '1'
+
+# For Android (in android/gradle.properties)
+newArchEnabled=true
+```
+
+**For Expo (in app.json):**
+```json
+{
+  "expo": {
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "newArchEnabled": true
+          },
+          "android": {
+            "newArchEnabled": true
+          }
+        }
+      ]
+    ]
+  }
+}
+```
+
+The library will automatically detect and use the appropriate architecture at runtime.
+
+---
 
 ### **React Native CLI**
 
