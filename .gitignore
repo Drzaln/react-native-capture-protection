@@ -40,6 +40,10 @@ project.xcworkspace
 local.properties
 android.iml
 
+# Kotlin compilation
+*.class
+META-INF/
+
 # Cocoapods
 #
 example/**/ios/Pods
