@@ -3,14 +3,12 @@ package com.captureprotection
 import android.view.WindowManager
 import com.captureprotection.constants.CaptureEventType
 import com.captureprotection.constants.Constants
-import com.captureprotection.android.utils.ActivityUtils
-import com.captureprotection.android.utils.Response
 import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule
 
 @ReactModule(name = Constants.NAME)
 class CaptureProtectionModule(private val reactContext: ReactApplicationContext) :
-        CaptureProtectionLifecycleListener(reactContext), CaptureProtectionSpec(reactContext) {
+        CaptureProtectionLifecycleListener(reactContext), CaptureProtectionSpec {
 
   override fun getName(): String = Constants.NAME
 

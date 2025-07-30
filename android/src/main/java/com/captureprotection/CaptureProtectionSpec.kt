@@ -1,18 +1,16 @@
 package com.captureprotection
 
 import com.facebook.react.bridge.Promise
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
 
-abstract class CaptureProtectionSpec(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
+interface CaptureProtectionSpec {
 
-  abstract fun addListener(eventName: String)
-  abstract fun removeListeners(count: Double)
-  abstract fun hasListener(promise: Promise)
-  abstract fun isScreenRecording(promise: Promise)
-  abstract fun prevent(promise: Promise)
-  abstract fun allow(promise: Promise)
-  abstract fun protectionStatus(promise: Promise)
-  abstract fun requestPermission(promise: Promise)
-  abstract fun checkPermission(promise: Promise)
+  fun addListener(eventName: String)
+  fun removeListeners(count: Double)
+  fun hasListener(promise: Promise)
+  fun isScreenRecording(promise: Promise)
+  fun prevent(promise: Promise)
+  fun allow(promise: Promise)
+  fun protectionStatus(promise: Promise)
+  fun requestPermission(promise: Promise)
+  fun checkPermission(promise: Promise)
 }
