@@ -3,30 +3,30 @@ package com.captureprotection
 import android.view.WindowManager
 import com.captureprotection.constants.CaptureEventType
 import com.captureprotection.constants.Constants
-import com.captureprotection.android.utils.ActivityUtils
-import com.captureprotection.android.utils.Response
+import com.captureprotection.ActivityUtils
+import com.captureprotection.Response
 import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule
 
 @ReactModule(name = Constants.NAME)
 class CaptureProtectionModule(private val reactContext: ReactApplicationContext) :
-        CaptureProtectionLifecycleListener(reactContext), CaptureProtectionSpec(reactContext) {
+        CaptureProtectionLifecycleListener(reactContext) {
 
   override fun getName(): String = Constants.NAME
 
   @ReactMethod
-  override fun addListener(eventName: String) {
+  fun addListener(eventName: String) {
     super.addScreenCaptureListener()
   }
 
   @ReactMethod
-  override fun removeListeners(count: Double) {
+  fun removeListeners(count: Double) {
     // Remove listeners - count converted to int for compatibility
     // super.removeScreenCaptureListener()
   }
 
   @ReactMethod
-  override fun hasListener(promise: Promise) {
+  fun hasListener(promise: Promise) {
     currentActivity?.runOnUiThread {
       try {
         val params = super.hasScreenCaptureListener()
@@ -38,7 +38,7 @@ class CaptureProtectionModule(private val reactContext: ReactApplicationContext)
   }
 
   @ReactMethod
-  override fun isScreenRecording(promise: Promise) {
+  fun isScreenRecording(promise: Promise) {
     currentActivity?.runOnUiThread {
       try {
         promise.resolve(super.screens.size > 1)
@@ -49,7 +49,7 @@ class CaptureProtectionModule(private val reactContext: ReactApplicationContext)
   }
 
   @ReactMethod
-  override fun prevent(promise: Promise) {
+  fun prevent(promise: Promise) {
     currentActivity?.runOnUiThread {
       try {
         val currentActivity = ActivityUtils.getReactCurrentActivity(reactContext)
@@ -69,7 +69,7 @@ class CaptureProtectionModule(private val reactContext: ReactApplicationContext)
   }
 
   @ReactMethod
-  override fun allow(promise: Promise) {
+  fun allow(promise: Promise) {
     currentActivity?.runOnUiThread {
       try {
         val currentActivity = ActivityUtils.getReactCurrentActivity(reactContext)
@@ -87,7 +87,7 @@ class CaptureProtectionModule(private val reactContext: ReactApplicationContext)
   }
 
   @ReactMethod
-  override fun protectionStatus(promise: Promise) {
+  fun protectionStatus(promise: Promise) {
     currentActivity?.runOnUiThread {
       try {
         val flags = ActivityUtils.isSecureFlag(reactContext)
@@ -99,13 +99,13 @@ class CaptureProtectionModule(private val reactContext: ReactApplicationContext)
   }
 
   @ReactMethod
-  override fun requestPermission(promise: Promise) {
+  fun requestPermission(promise: Promise) {
     val isPermission = super.requestStoragePermission()
     promise.resolve(isPermission)
   }
 
   @ReactMethod
-  override fun checkPermission(promise: Promise) {
+  fun checkPermission(promise: Promise) {
     val isPermission = super.checkStoragePermission()
     promise.resolve(isPermission)
   }
