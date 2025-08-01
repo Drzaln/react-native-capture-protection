@@ -169,7 +169,7 @@
     ]
   },
   "codegenConfig": {
-    "name": "RNCaptureProtectionSpec",
+    "name": "RNCaptureProtectionSpec", 
     "type": "modules",
     "jsSrcsDir": "src"
   },

@@ -21,7 +21,7 @@ export function testArchitectureSupport() {
         return {
           architecture: 'legacy',
           supported: true,
-          error: error.message
+          error: error instanceof Error ? error.message : String(error)
         };
       }
     } else {
@@ -36,7 +36,7 @@ export function testArchitectureSupport() {
     return {
       architecture: 'unknown',
       supported: false,
-      error: error.message
+      error: error instanceof Error ? error.message : String(error)
     };
   }
 }
@@ -74,7 +74,7 @@ export function testModuleLoading() {
     console.error('❌ Module loading failed:', error);
     return {
       success: false,
-      error: error.message
+      error: error instanceof Error ? error.message : String(error)
     };
   }
 }

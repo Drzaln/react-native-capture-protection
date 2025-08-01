@@ -109,4 +109,75 @@ class CaptureProtectionModule(private val reactContext: ReactApplicationContext)
     val isPermission = super.checkStoragePermission()
     promise.resolve(isPermission)
   }
+
+  // iOS-specific methods - implement as no-ops for Android
+  @ReactMethod
+  fun allowScreenshot(promise: Promise) {
+    // Android uses FLAG_SECURE for all capture prevention
+    // This is equivalent to allow()
+    allow(promise)
+  }
+
+  @ReactMethod
+  fun preventScreenshot(promise: Promise) {
+    // Android uses FLAG_SECURE for all capture prevention
+    // This is equivalent to prevent()
+    prevent(promise)
+  }
+
+  @ReactMethod
+  fun allowScreenRecord(promise: Promise) {
+    // Android uses FLAG_SECURE for all capture prevention
+    // This is equivalent to allow()
+    allow(promise)
+  }
+
+  @ReactMethod
+  fun preventScreenRecord(promise: Promise) {
+    // Android uses FLAG_SECURE for all capture prevention
+    // This is equivalent to prevent()
+    prevent(promise)
+  }
+
+  @ReactMethod
+  fun preventScreenRecordWithText(text: String, textColor: String?, backgroundColor: String?, promise: Promise) {
+    // Android FLAG_SECURE doesn't support custom text/colors
+    // Fall back to standard prevent()
+    prevent(promise)
+  }
+
+  @ReactMethod
+  fun preventScreenRecordWithImage(image: ReadableMap, backgroundColor: String?, contentMode: Double, promise: Promise) {
+    // Android FLAG_SECURE doesn't support custom images
+    // Fall back to standard prevent()
+    prevent(promise)
+  }
+
+  @ReactMethod
+  fun allowAppSwitcher(promise: Promise) {
+    // Android uses FLAG_SECURE for all capture prevention
+    // This is equivalent to allow()
+    allow(promise)
+  }
+
+  @ReactMethod
+  fun preventAppSwitcher(promise: Promise) {
+    // Android uses FLAG_SECURE for all capture prevention
+    // This is equivalent to prevent()
+    prevent(promise)
+  }
+
+  @ReactMethod
+  fun preventAppSwitcherWithText(text: String, textColor: String?, backgroundColor: String?, promise: Promise) {
+    // Android FLAG_SECURE doesn't support custom text/colors
+    // Fall back to standard prevent()
+    prevent(promise)
+  }
+
+  @ReactMethod
+  fun preventAppSwitcherWithImage(image: ReadableMap, backgroundColor: String?, contentMode: Double, promise: Promise) {
+    // Android FLAG_SECURE doesn't support custom images
+    // Fall back to standard prevent()
+    prevent(promise)
+  }
 }
