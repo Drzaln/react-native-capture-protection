@@ -110,6 +110,33 @@ RCT_EXPORT_MODULE(CaptureProtection)
   [_legacyModule removeListeners:(NSInteger)count];
 }
 
+// Android-specific methods - implement as no-ops for iOS
+- (void)allow:(RCTPromiseResolveBlock)resolve
+     rejecter:(RCTPromiseRejectBlock)reject {
+  // iOS equivalent is preventScreenshot:NO, etc.
+  // For consistency, resolve with false since this is Android-specific
+  resolve(@(NO));
+}
+
+- (void)prevent:(RCTPromiseResolveBlock)resolve
+       rejecter:(RCTPromiseRejectBlock)reject {
+  // iOS equivalent is preventScreenshot:YES, etc.
+  // For consistency, resolve with false since this is Android-specific
+  resolve(@(NO));
+}
+
+- (void)requestPermission:(RCTPromiseResolveBlock)resolve
+                rejecter:(RCTPromiseRejectBlock)reject {
+  // iOS doesn't require permissions for screen capture protection
+  resolve(@(YES));
+}
+
+- (void)checkPermission:(RCTPromiseResolveBlock)resolve
+               rejecter:(RCTPromiseRejectBlock)reject {
+  // iOS doesn't require permissions for screen capture protection
+  resolve(@(YES));
+}
+
 @end
 
 #endif /* RCT_NEW_ARCH_ENABLED */

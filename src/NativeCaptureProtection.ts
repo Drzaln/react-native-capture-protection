@@ -3,7 +3,7 @@ import { TurboModuleRegistry } from 'react-native';
 
 export interface CaptureProtectionStatus {
   record?: boolean;
-  appSwitcher?: boolean;
+  appSwitcher?: boolean; 
   screenshot?: boolean;
 }
 
